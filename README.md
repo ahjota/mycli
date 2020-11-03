@@ -16,6 +16,7 @@ This CLI is built on top of [oclif][0], which requires [LTS Node][1]. It is also
 [1]: https://oclif.io/docs/introduction#requirements
 
 <!-- toc -->
+* [Requirements](#requirements)
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->

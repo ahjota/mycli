@@ -92,3 +92,11 @@ Saving it into /Users/aj/workspace/ajcli/.yarn/releases/yarn-berry.cjs...
 Updating /Users/aj/workspace/ajcli/.yarnrc.yml...
 Done!
 ```
+
+This also requires some configuration of VS Code to support workspace-based use of TypeScript:
+
+Run this: https://yarnpkg.com/getting-started/editor-sdks#vscode
+
+```
+yarn dlx @yarnpkg/pnpify --sdk vscode
+```
