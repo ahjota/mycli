@@ -1,7 +1,8 @@
-import {Command, flags} from '@oclif/command'
+import { Command, flags } from '@oclif/command'
+import * as inquirer from 'inquirer'
 
 class Ajcli extends Command {
-  static description = 'describe the command here'
+  static description = "Let's try to auth with DataRobot!"
 
   static flags = {
     // add --version flag to show CLI version
@@ -10,19 +11,31 @@ class Ajcli extends Command {
     // flag with a value (-n, --name=VALUE)
     name: flags.string({char: 'n', description: 'name to print'}),
     // flag with no value (-f, --force)
-    force: flags.boolean({char: 'f'}),
+    force: flags.boolean({ char: 'f' }),
+    deployment: flags.string({ options: ["cloud", "vpc", "onprem", "selfservice", "trial"] }),
   }
 
   static args = [{name: 'file'}]
 
   async run() {
-    const {args, flags} = this.parse(Ajcli)
+    const { args, flags } = this.parse(Ajcli)
+    let deployment = flags.deployment
 
-    const name = flags.name ?? 'world'
-    this.log(`hello ${name} from ./src/index.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
+    if (!deployment) {
+      let responses: any = await inquirer.prompt([{
+        name: "deployment",
+        message: "select a deployment",
+        type: "list",
+        choices: [
+          { name: 'cloud' },
+          { name: 'vpc' },
+          { name: 'production'}
+        ]
+      }])
+      deployment = responses.deployment
     }
+
+    this.log(`you are authenticating to a ${deployment} deployment of DataRobot`)
   }
 }
 
