@@ -33,7 +33,7 @@ class Ajcli extends Command {
       if (!deployment) {
         let responses: any = await inquirer.prompt([{
           name: "deployment",
-          message: "select a deployment",
+          message: "Select your DataRobot deployment",
           type: "list",
           choices: [
             { name: 'Managed AI Cloud', value: 'cloud' },
@@ -75,6 +75,7 @@ class Ajcli extends Command {
     }
 
     this.log(`You are authenticating to the DataRobot API at ${endpoint}`)
+
   }
 }
 

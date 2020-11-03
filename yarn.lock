@@ -487,6 +487,7 @@ __metadata:
     inquirer: ^7.3.3
     mocha: ^5
     nyc: ^14
+    open: ^7.3.0
     ts-node: ^8
     tslib: ^1
     typescript: ^3.3
@@ -2696,6 +2697,16 @@ __metadata:
   dependencies:
     mimic-fn: ^2.1.0
   checksum: e425f6caeb20cf2598ffece94be5663932e34d074f1631b682b13d5f01cc1e0712a7dc711eff1706bb5a5aaab8a52e37bd5edcf560334e3222219d7e8b09c21c
+  languageName: node
+  linkType: hard
+
+"open@npm:^7.3.0":
+  version: 7.3.0
+  resolution: "open@npm:7.3.0"
+  dependencies:
+    is-docker: ^2.0.0
+    is-wsl: ^2.1.1
+  checksum: a212fc9cf619a1386b9440b925e72c447b32c9e59b978f86260e99dab2c218c758bc83f9d657a58d1210b65ab5dba77045240d36e71721074926b1e896092db6
   languageName: node
   linkType: hard
 
