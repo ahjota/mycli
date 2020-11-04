@@ -38,3 +38,13 @@ USAGE
 <!-- commands -->
 
 <!-- commandsstop -->
+
+# Development
+```sh
+# install everything
+yarn install
+# this is necessary for VS Code to pick up yarn 2 workspace packaging
+yarn dlx @yarnpkg/pnpify --sdk vscode
+# and then to test the cli
+yarn aj
+```
