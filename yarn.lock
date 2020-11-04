@@ -280,6 +280,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/bent@npm:^7.3.2":
+  version: 7.3.2
+  resolution: "@types/bent@npm:7.3.2"
+  dependencies:
+    "@types/node": "*"
+  checksum: 0920fe928438ec3194091269df1e8f0b91e634f77ec60f5c52233dadc59fbdfcb4c130c23a0179f3dcd99d4bdfdf865d767cc81e20c870ab7ff70ca95a49e790
+  languageName: node
+  linkType: hard
+
 "@types/chai@npm:*, @types/chai@npm:^4":
   version: 4.2.14
   resolution: "@types/chai@npm:4.2.14"
@@ -353,6 +362,15 @@ __metadata:
   version: 10.17.44
   resolution: "@types/node@npm:10.17.44"
   checksum: 050261ca4345ff75a9f7942a8c9820b2ea7f30fec827ec8c2c6d7999b4a57244fd0412d969ce74327a30f48e1027fdab5979286815c0e21960a85765f00b22b8
+  languageName: node
+  linkType: hard
+
+"@types/open@npm:^6.2.1":
+  version: 6.2.1
+  resolution: "@types/open@npm:6.2.1"
+  dependencies:
+    open: "*"
+  checksum: 7395a108b56a8e101b73d807a0368ba82bd935cf1a13373574cb24454e0a35922a32c6348acbdcd45b1c7cbeed0ac75a0059f6046471f0a3e094380bdbf62635
   languageName: node
   linkType: hard
 
@@ -476,10 +494,13 @@ __metadata:
     "@oclif/errors": ^1.3.3
     "@oclif/plugin-help": ^3
     "@oclif/test": ^1
+    "@types/bent": ^7.3.2
     "@types/chai": ^4
     "@types/inquirer": ^7.3.1
     "@types/mocha": ^5
     "@types/node": ^10
+    "@types/open": ^6.2.1
+    bent: ^7.3.12
     chai: ^4
     eslint: ^5.13
     eslint-config-oclif: ^3.1
@@ -644,6 +665,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bent@npm:^7.3.12":
+  version: 7.3.12
+  resolution: "bent@npm:7.3.12"
+  dependencies:
+    bytesish: ^0.4.1
+    caseless: ~0.12.0
+    is-stream: ^2.0.0
+  checksum: 172ebf5ecb2ad32d1d8e57798d95190ce2957df869eebc39768e5897a0b628cd6b779e267320c795753b58e7dba57121d6959d34dbea9eb2df84350494bb0243
+  languageName: node
+  linkType: hard
+
 "bl@npm:^4.0.3":
   version: 4.0.3
   resolution: "bl@npm:4.0.3"
@@ -698,6 +730,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bytesish@npm:^0.4.1":
+  version: 0.4.4
+  resolution: "bytesish@npm:0.4.4"
+  checksum: 5f27669941a6e682b42753af12579c8017a7e6cf96b2fae1a24185c734cfce2f589bc20104cc8b65af6ce37fd669375cfc55b6a14d242fcb94fbde08d3e70219
+  languageName: node
+  linkType: hard
+
 "caching-transform@npm:^3.0.2":
   version: 3.0.2
   resolution: "caching-transform@npm:3.0.2"
@@ -733,6 +772,13 @@ __metadata:
   bin:
     cdl: ./bin/cdl.js
   checksum: 7dafc23b737921f8249c3060709413719729ec1fb4771ac805f59990314ef78993931d73a3cf3ef2edd6f1789b2b1630e20f24e9c76256d01796067ad244d263
+  languageName: node
+  linkType: hard
+
+"caseless@npm:~0.12.0":
+  version: 0.12.0
+  resolution: "caseless@npm:0.12.0"
+  checksum: 147f48bff9bebf029d7050e2335da3f8d295f26d157edf08d8c3282c804dae04a462c4cd6efa8179755686aa3aeaca5c28f3e7f3559698bc0484c65e46c36c5b
   languageName: node
   linkType: hard
 
@@ -2700,7 +2746,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"open@npm:^7.3.0":
+"open@npm:*, open@npm:^7.3.0":
   version: 7.3.0
   resolution: "open@npm:7.3.0"
   dependencies:
