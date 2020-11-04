@@ -1,6 +1,7 @@
 import { Command, flags } from '@oclif/command'
 import * as inquirer from 'inquirer'
 import open from 'open'
+import https from 'https'
 
 // https://api-docs.datarobot.com/docs/guide-to-different-datarobot-endpoints
 class Ajcli extends Command {
@@ -113,7 +114,21 @@ Copy that API key, then come back here and paste it in at the next prompt.`
     this.log("Let's make sure that token works...")
 
     // GET https://app.datarobot.com/api/v2/projects/ HTTP/1.1
-    this.log("... and you're in. 🔥")
+    var options = {
+      headers: {
+        Authorization: `Bearer ${apiToken}`
+      }
+    }
+    https.get(`${endpoint}/projects/`, options, (res) => {
+      this.debug(res.statusMessage)
+      if (res.statusCode == 200) {
+        this.log("... and you're in. 🔥")
+      } else if (res.statusCode == 401) {
+        this.log(`Hmm, the API token you gave was not valid. We should try that again.`)
+      } else {
+        this.log(`Hmm, the request didn't work. Please try your call again later.`)
+      }
+    })
   }
 }
 
