@@ -323,6 +323,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/js-yaml@npm:^3.12.5":
+  version: 3.12.5
+  resolution: "@types/js-yaml@npm:3.12.5"
+  checksum: 82ca4b40ee1baf82961f75b7db8fae5a1d63410c066475424659c3bd1873cf02bf015ebdeb8751e7b6d0c87b4d3f09f20d2cc2075c4bdd4e7d58409ddd6ad925
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:^7.0.3":
   version: 7.0.6
   resolution: "@types/json-schema@npm:7.0.6"
@@ -488,6 +495,7 @@ __metadata:
     "@types/bent": ^7.3.2
     "@types/chai": ^4
     "@types/inquirer": ^7.3.1
+    "@types/js-yaml": ^3.12.5
     "@types/mocha": ^5
     "@types/node": ^10
     bent: ^7.3.12
@@ -496,6 +504,7 @@ __metadata:
     eslint-config-oclif: ^3.1
     eslint-config-oclif-typescript: ^0.1
     inquirer: ^7.3.3
+    js-yaml: ^3.14.0
     mocha: ^5
     nyc: ^14
     open: ^7.3.0
@@ -2218,7 +2227,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-yaml@npm:^3.13.0, js-yaml@npm:^3.13.1":
+"js-yaml@npm:^3.13.0, js-yaml@npm:^3.13.1, js-yaml@npm:^3.14.0":
   version: 3.14.0
   resolution: "js-yaml@npm:3.14.0"
   dependencies:
