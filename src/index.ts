@@ -22,7 +22,10 @@ class Ajcli extends Command {
     deployment: flags.string(
       { options: ["cloud", "onprem", "selfservice", "trial"] }),
     endpoint: flags.string(
-      {char: 'e', description: 'DR API endpoint, ex. https://app2.datarobot.com/api/v2'}
+      {
+        char: 'e',
+        description: 'DR API endpoint, ex. https://app2.datarobot.com/api/v2'
+      }
     )
   }
 
@@ -38,7 +41,7 @@ class Ajcli extends Command {
       return
     }
 
-    let drEndpoint = drClientConfig.has('endpoint') || flags.endpoint
+    let drEndpoint = flags.endpoint
     let deployment = flags.deployment
     let deploymentRoot = "https://app2.datarobot.com"
     let drDeveloperToolsUrl = deploymentRoot
