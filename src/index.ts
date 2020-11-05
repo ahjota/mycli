@@ -33,12 +33,12 @@ class Ajcli extends Command {
 
     let drClientConfig: YAML.Document = readDatarobotConfig()
 
-    if (drClientConfig.get('endpoint') && drClientConfig.get('token')) {
+    if (drClientConfig.has('endpoint') && drClientConfig.has('token')) {
       this.log("You're already logged in! Happy modeling! 🔥")
       return
     }
 
-    let drEndpoint = drClientConfig.get('endpoint') || flags.endpoint
+    let drEndpoint = drClientConfig.has('endpoint') || flags.endpoint
     let deployment = flags.deployment
     let deploymentRoot = "https://app2.datarobot.com"
     let drDeveloperToolsUrl = deploymentRoot
@@ -121,12 +121,12 @@ Copy that API key, then come back here and paste it in at the next prompt.`
       type: "password",
     }])
 
-    let apiToken: string = saveTokenResponse.apiToken
+    let drApiToken: string = saveTokenResponse.apiToken
     this.log("Let's make sure that token works...")
 
     try {
       // GET https://app.datarobot.com/api/v2/projects/ HTTP/1.1
-      const testApi = bent('GET', 'json', 200, {Authorization: `Bearer ${apiToken}`})
+      const testApi = bent('GET', 'json', 200, {Authorization: `Bearer ${drApiToken}`})
       let testResponse = await testApi(`${drEndpoint}/projects/`)
 
       // console.log(testResponse)
@@ -141,7 +141,9 @@ Copy that API key, then come back here and paste it in at the next prompt.`
       }
     }
 
-    writeTokenToDatarobotConfig(apiToken)
+    drClientConfig.set('endpoint', drEndpoint)
+    drClientConfig.set('token', drApiToken)
+    writeDrConfigToFile(drClientConfig)
     this.log(`... and you're in. 🔥 We've saved the token to ${configPath}`)
   }
 }
@@ -159,6 +161,16 @@ function readDatarobotConfig(): YAML.Document {
   } catch (e) {
       console.log(e)
       return new YAML.Document
+  }
+}
+
+// Overwrites entire config file
+function writeDrConfigToFile(config: YAML.Document) {
+  try {
+    fs.writeFileSync(configPath, config.toString(), 'utf8')
+  } catch (e) {
+    console.log(config.errors)
+    throw e
   }
 }
 
