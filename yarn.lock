@@ -500,10 +500,11 @@ __metadata:
     nyc: ^14
     open: ^7.3.0
     ts-node: ^8
+    tsc: ^1.20150623.0
     tslib: ^1
     typescript: ^3.3
   bin:
-    aj: ./bin/run
+    dr: ./bin/run
   languageName: unknown
   linkType: soft
 
@@ -3681,6 +3682,16 @@ __metadata:
     ts-node-transpile-only: dist/bin-transpile.js
     ts-script: dist/bin-script-deprecated.js
   checksum: cd6e023e073d65ea346cf4a5b70bfd1e7c7f342c967a23a83038fd3462067558a4dda4fc8b238e6709db69aca3847590a93b4c52ae001e23ed9fef3b4fecbc71
+  languageName: node
+  linkType: hard
+
+"tsc@npm:^1.20150623.0":
+  version: 1.20150623.0
+  resolution: "tsc@npm:1.20150623.0"
+  bin:
+    tsc: ./bin/tsc
+    tsserver: ./bin/tsserver
+  checksum: 648f71fea1459d1e5fe526f10956a1fd6ad4c79be1abdb2e1166d5e57b7acbec9aa72bf074b8cae5d361650a32c08910ab78efaea1cc4b9696aa79ada950d761
   languageName: node
   linkType: hard
 
