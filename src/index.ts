@@ -31,19 +31,18 @@ class Ajcli extends Command {
   async run() {
     const { args, flags } = this.parse(Ajcli)
 
-    let deployment = flags.deployment
-    let drEndpoint = flags.endpoint
-    let deploymentRoot = "https://app2.datarobot.com"
-    let drDeveloperToolsUrl = deploymentRoot
-
     let drClientConfig: YAML.Document = readDatarobotConfig()
-    this.log(YAML.stringify(drClientConfig))
-     drEndpoint = drClientConfig.get('endpoint')
+
     let drToken = drClientConfig.get('token')
-    if (drToken) {
+    let drEndpoint = flags.endpoint ?? drClientConfig.get('endpoint')
+    if (drEndpoint && drToken) {
       this.log("You're logged in and already have a token! Happy modeling! 🔥")
       return
     }
+
+    let deployment = flags.deployment
+    let deploymentRoot = "https://app2.datarobot.com"
+    let drDeveloperToolsUrl = deploymentRoot
 
     if (!drEndpoint) {
       if (!deployment) {
