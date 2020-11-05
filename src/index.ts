@@ -2,6 +2,11 @@ import { Command, flags } from '@oclif/command'
 import * as inquirer from 'inquirer'
 import open from 'open'
 import bent, { StatusError } from 'bent'
+import YAML from 'yaml'
+import fs from 'fs'
+import { YAMLMap } from 'yaml/types'
+
+const configPath = `${process.env.HOME}/.config/datarobot/drconfig.yaml`
 
 // https://api-docs.datarobot.com/docs/guide-to-different-datarobot-endpoints
 class Ajcli extends Command {
@@ -27,12 +32,13 @@ class Ajcli extends Command {
   async run() {
     const { args, flags } = this.parse(Ajcli)
 
-    const configPath = "${HOME}/.config/datarobot/drconfig.yaml"
-
     let deployment = flags.deployment
     let endpoint = flags.endpoint
     let deploymentRoot = "https://app2.datarobot.com"
     let drDeveloperToolsUrl = deploymentRoot
+
+    YAML.stringify(readDatarobotConfig()
+    return
 
     if (!endpoint) {
       if (!deployment) {
@@ -139,6 +145,16 @@ function sleep(ms: number) {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
+}
+
+function readDatarobotConfig(): YAML.Document {
+  try {
+    const config = YAML.parseDocument(fs.readFileSync(configPath, 'utf8'));
+    return config;
+} catch (e) {
+    console.log(e);
+    return new YAML.Document;
+}
 }
 
 export = Ajcli

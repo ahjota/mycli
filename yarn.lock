@@ -323,13 +323,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/js-yaml@npm:^3.12.5":
-  version: 3.12.5
-  resolution: "@types/js-yaml@npm:3.12.5"
-  checksum: 82ca4b40ee1baf82961f75b7db8fae5a1d63410c066475424659c3bd1873cf02bf015ebdeb8751e7b6d0c87b4d3f09f20d2cc2075c4bdd4e7d58409ddd6ad925
-  languageName: node
-  linkType: hard
-
 "@types/json-schema@npm:^7.0.3":
   version: 7.0.6
   resolution: "@types/json-schema@npm:7.0.6"
@@ -495,7 +488,6 @@ __metadata:
     "@types/bent": ^7.3.2
     "@types/chai": ^4
     "@types/inquirer": ^7.3.1
-    "@types/js-yaml": ^3.12.5
     "@types/mocha": ^5
     "@types/node": ^10
     bent: ^7.3.12
@@ -504,7 +496,6 @@ __metadata:
     eslint-config-oclif: ^3.1
     eslint-config-oclif-typescript: ^0.1
     inquirer: ^7.3.3
-    js-yaml: ^3.14.0
     mocha: ^5
     nyc: ^14
     open: ^7.3.0
@@ -512,6 +503,7 @@ __metadata:
     tsc: ^1.20150623.0
     tslib: ^1
     typescript: ^3.3
+    yaml: ^1.10.0
   bin:
     dr: ./bin/run
   languageName: unknown
@@ -2227,7 +2219,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-yaml@npm:^3.13.0, js-yaml@npm:^3.13.1, js-yaml@npm:^3.14.0":
+"js-yaml@npm:^3.13.0, js-yaml@npm:^3.13.1":
   version: 3.14.0
   resolution: "js-yaml@npm:3.14.0"
   dependencies:
@@ -3993,6 +3985,13 @@ typescript@^3.3:
   version: 2.1.2
   resolution: "yallist@npm:2.1.2"
   checksum: f83e3d18eeba68a0276be2ab09260be3f2a300307e84b1565c620ef71f03f106c3df9bec4c3a91e5fa621a038f8826c19b3786804d3795dd4f999e5b6be66ea3
+  languageName: node
+  linkType: hard
+
+"yaml@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "yaml@npm:1.10.0"
+  checksum: d4cc9f9724f8d0aebc2cf52e4e6aa7059f12d50deb54b5225d103462fb2af36e5c0bb419101ca4b1f0cd3b4db9e4139cf2c690e863ac6227648d39d6f4e2522c
   languageName: node
   linkType: hard
 
