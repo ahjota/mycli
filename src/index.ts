@@ -1,10 +1,9 @@
 import { Command, flags } from '@oclif/command'
 import * as inquirer from 'inquirer'
 import open from 'open'
-import bent, { StatusError } from 'bent'
+import bent from 'bent'
 import YAML from 'yaml'
-import fs, { write } from 'fs'
-import { YAMLMap } from 'yaml/types'
+import fs from 'fs'
 
 const configPath = `${process.env.HOME}/.config/datarobot/drconfig.yaml`
 
