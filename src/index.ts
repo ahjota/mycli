@@ -89,7 +89,6 @@ class Ajcli extends Command {
       drDeveloperToolsUrl = deploymentRoot.concat("/account/developer-tools")
     }
 
-    // TODO Bypass if token already exists in configuration
     let apiAccessHowTo: string = "https://api-docs.datarobot.com/docs/api-access-guide"
     let loginInstructions: string =
       `Hello! You are authenticating to the DataRobot API at ${drEndpoint}.
@@ -133,7 +132,7 @@ Copy that API key, then come back here and paste it in at the next prompt.`
     } catch (error) {
       this.debug(error)
       if (error.statusCode == 401) {
-        this.log('Hmm, the API token you gave was not valid. Try `` again.')
+        this.log('Hmm, the API token you gave was not valid. Try `dr` again.')
         return 1
       } else {
         this.log("Hmm, the request didn't work. Please try your call again later.")
@@ -170,15 +169,6 @@ function writeDrConfigToFile(config: YAML.Document) {
     fs.writeFileSync(configPath, config.toString(), 'utf8')
   } catch (e) {
     console.log(config.errors)
-    throw e
-  }
-}
-
-// Assumes that token does not already exist
-function writeTokenToDatarobotConfig(token: string) {
-  try {
-    fs.appendFileSync(configPath, `token: ${token}`, 'utf8')
-  } catch (e) {
     throw e
   }
 }
