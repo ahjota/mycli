@@ -27,6 +27,8 @@ class Ajcli extends Command {
   async run() {
     const { args, flags } = this.parse(Ajcli)
 
+    const configPath = "${HOME}/.config/datarobot/drconfig.yaml"
+
     let deployment = flags.deployment
     let endpoint = flags.endpoint
     let deploymentRoot = "https://app2.datarobot.com"
@@ -118,8 +120,8 @@ Copy that API key, then come back here and paste it in at the next prompt.`
 
     try {
       let testResponse = await testApi(`${endpoint}/projects/`)
-      console.log(testResponse)
-      this.log("... and you're in. 🔥")
+      // console.log(testResponse)
+      this.log(`... and you're in. 🔥 We've saved the token to ${configPath}`)
     } catch (error) {
       this.debug(error)
       if (error.statusCode == 401) {
@@ -128,6 +130,8 @@ Copy that API key, then come back here and paste it in at the next prompt.`
         this.log("Hmm, the request didn't work. Please try your call again later.")
       }
     }
+
+
   }
 }
 
