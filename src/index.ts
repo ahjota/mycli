@@ -3,7 +3,7 @@ import * as inquirer from 'inquirer'
 import open from 'open'
 import bent, { StatusError } from 'bent'
 import YAML from 'yaml'
-import fs from 'fs'
+import fs, { write } from 'fs'
 import { YAMLMap } from 'yaml/types'
 
 const configPath = `${process.env.HOME}/.config/datarobot/drconfig.yaml`
@@ -33,14 +33,20 @@ class Ajcli extends Command {
     const { args, flags } = this.parse(Ajcli)
 
     let deployment = flags.deployment
-    let endpoint = flags.endpoint
+    let drEndpoint = flags.endpoint
     let deploymentRoot = "https://app2.datarobot.com"
     let drDeveloperToolsUrl = deploymentRoot
 
-    YAML.stringify(readDatarobotConfig()
-    return
+    let drClientConfig: YAML.Document = readDatarobotConfig()
+    this.log(YAML.stringify(drClientConfig))
+     drEndpoint = drClientConfig.get('endpoint')
+    let drToken = drClientConfig.get('token')
+    if (drToken) {
+      this.log("You're logged in and already have a token! Happy modeling! 🔥")
+      return
+    }
 
-    if (!endpoint) {
+    if (!drEndpoint) {
       if (!deployment) {
         let responses: any = await inquirer.prompt([{
           name: "deployment",
@@ -82,14 +88,14 @@ class Ajcli extends Command {
         deploymentRoot = responses.deploymentRoot
       }
 
-      endpoint = deploymentRoot.concat("/api/v2")
+      drEndpoint = deploymentRoot.concat("/api/v2")
       drDeveloperToolsUrl = deploymentRoot.concat("/account/developer-tools")
     }
 
     // TODO Bypass if token already exists in configuration
     let apiAccessHowTo: string = "https://api-docs.datarobot.com/docs/api-access-guide"
     let loginInstructions: string =
-      `Hello! You are authenticating to the DataRobot API at ${endpoint}.
+      `Hello! You are authenticating to the DataRobot API at ${drEndpoint}.
 You'll need an API token, so let's get you one!
 
 In a moment, I'm going to take you to the DataRobot app at ${deploymentRoot}.
@@ -121,23 +127,25 @@ Copy that API key, then come back here and paste it in at the next prompt.`
     let apiToken: string = saveTokenResponse.apiToken
     this.log("Let's make sure that token works...")
 
-    // GET https://app.datarobot.com/api/v2/projects/ HTTP/1.1
-    const testApi = bent('GET', 'json', 200, {Authorization: `Bearer ${apiToken}`})
-
     try {
-      let testResponse = await testApi(`${endpoint}/projects/`)
+      // GET https://app.datarobot.com/api/v2/projects/ HTTP/1.1
+      const testApi = bent('GET', 'json', 200, {Authorization: `Bearer ${apiToken}`})
+      let testResponse = await testApi(`${drEndpoint}/projects/`)
+
       // console.log(testResponse)
-      this.log(`... and you're in. 🔥 We've saved the token to ${configPath}`)
     } catch (error) {
       this.debug(error)
       if (error.statusCode == 401) {
-        this.log('Hmm, the API token you gave was not valid. We should try that again.')
+        this.log('Hmm, the API token you gave was not valid. Try `` again.')
+        return 1
       } else {
         this.log("Hmm, the request didn't work. Please try your call again later.")
+        return 1
       }
     }
 
-
+    writeTokenToDatarobotConfig(apiToken)
+    this.log(`... and you're in. 🔥 We've saved the token to ${configPath}`)
   }
 }
 
@@ -149,12 +157,21 @@ function sleep(ms: number) {
 
 function readDatarobotConfig(): YAML.Document {
   try {
-    const config = YAML.parseDocument(fs.readFileSync(configPath, 'utf8'));
-    return config;
-} catch (e) {
-    console.log(e);
-    return new YAML.Document;
+    const doc = YAML.parseDocument(fs.readFileSync(configPath, 'utf8'))
+    return doc
+  } catch (e) {
+      console.log(e)
+      return new YAML.Document
+  }
 }
+
+// Assumes that token does not already exist
+function writeTokenToDatarobotConfig(token: string) {
+  try {
+    fs.appendFileSync(configPath, `token: ${token}`, 'utf8')
+  } catch (e) {
+    throw e
+  }
 }
 
 export = Ajcli
