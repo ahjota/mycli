@@ -49,7 +49,10 @@
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
-    "bin": "dr"
+    "bin": "dr",
+    "macos": {
+      "identifier": "hack.ahjota.dr.cli"
+    }
   },
   "repository": "ahjota/mycli",
   "scripts": {
