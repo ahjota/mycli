@@ -33,13 +33,12 @@ class Ajcli extends Command {
 
     let drClientConfig: YAML.Document = readDatarobotConfig()
 
-    let drToken = drClientConfig.get('token')
-    let drEndpoint = flags.endpoint ?? drClientConfig.get('endpoint')
-    if (drEndpoint && drToken) {
-      this.log("You're logged in and already have a token! Happy modeling! 🔥")
+    if (drClientConfig.get('endpoint') && drClientConfig.get('token')) {
+      this.log("You're already logged in! Happy modeling! 🔥")
       return
     }
 
+    let drEndpoint = drClientConfig.get('endpoint') || flags.endpoint
     let deployment = flags.deployment
     let deploymentRoot = "https://app2.datarobot.com"
     let drDeveloperToolsUrl = deploymentRoot
