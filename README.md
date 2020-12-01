@@ -16,20 +16,22 @@ This CLI is built on top of [oclif][0], which requires [LTS Node][1]. It is also
 [1]: https://oclif.io/docs/introduction#requirements
 
 <!-- toc -->
+* [Requirements](#requirements)
 * [Usage](#usage)
 * [Commands](#commands)
+* [Development](#development)
 <!-- tocstop -->
 # Usage
 <!-- usage -->
 ```sh-session
 $ npm install -g ajcli
-$ aj COMMAND
+$ dr COMMAND
 running command...
-$ aj (-v|--version|version)
+$ dr (-v|--version|version)
 ajcli/0.0.0 darwin-x64 node-v14.15.0
-$ aj --help [COMMAND]
+$ dr --help [COMMAND]
 USAGE
-  $ aj COMMAND
+  $ dr COMMAND
 ...
 ```
 <!-- usagestop -->
@@ -37,3 +39,10 @@ USAGE
 <!-- commands -->
 
 <!-- commandsstop -->
+
+# Development
+```sh
+yarn install # install everything
+yarn dlx @yarnpkg/pnpify --sdk vscode # this is necessary for VS Code to pick up yarn 2 workspace packaging
+yarn dr # and then to test the cli
+```
